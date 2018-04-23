@@ -1,0 +1,23 @@
+<section>
+    <div data-ng-show="trackCount">
+    <div>
+       <table class="track">
+           <caption>{{trackCount}}</caption>
+           <tr><th>Track number</th><th>Track name</th><th>Artist</th><th>Rating</th><th>Time</th><th>File type</th></tr>
+            <tr style="cursor: pointer;"
+                data-ng-class="{'selected':selectedTrack.track_id===track.track_id}"
+                data-ng-repeat="track in tracks">
+                <td style="display:none;">{{track.track_id}}</td>
+                <td>{{trackNumber}}</td>
+                <td>{{track.track_name}}</td>
+                <td>{{track.artist_name}}</td>
+                <td>{{track.rating}}</td>
+                <td>{{track.total_time | date: "mm.ss"}}</td>
+                <td>{{track.kind}}</td>
+            </tr>
+        </table>
+    </div>
+    <div style="display:inline-block;" data-ng-hide="trackCount">
+        <p>Sorry no track for this album</p>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #F7F7F7;
+  font: 14px "Source Sans Pro",sans-serif;
+  color: #363636;
+}
+
+h2 {
+  display: inline-block;
+}
+
+.album-list {
+  width: 100%;
+}
+
+.album {
+  cursor: pointer;
+  width: auto;
+  background-color: #fff;
+  border: 1px #CCC solid;
+}
+
+.album:nth-child(even) {
+    background-color: #EDEDEE;
+}
+
+table {
+  border-spacing: 0;
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  border-bottom: 1px #CCC solid;
+}
+
+.album td img {
+  max-height: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  min-height: 50px;
+}
+
+.album a {
+  text-decoration: none;
+  color: #363636;
+  font-weight: bold;
+}
