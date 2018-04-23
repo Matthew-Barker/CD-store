@@ -25,7 +25,7 @@
                 $scope.albumtitle = '';
 
                 $scope.$on('systemInfo_album', function (ev, album) {
-                    $scope.albumtitle = album.name;
+                    $scope.albumtitle = album.album_name;
                 })
             }
         ]
@@ -109,7 +109,8 @@
 
             }
         ]
-    ).controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
+    );
+    /*.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
         
         // Fetch data
         $scope.fetchUsers = function(){
@@ -146,5 +147,5 @@
         $scope.containerClicked = function(){
             $scope.searchResult = {};
         }
-    }]);
+    }]);*/
 }());

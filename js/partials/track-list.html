@@ -2,8 +2,8 @@
     <div data-ng-show="trackCount">
     <div>
        <table class="track">
-           <caption>{{trackCount}}</caption>
-           <tr><th>Track number</th><th>Track name</th><th>Artist</th><th>Rating</th><th>Time</th><th>File type</th></tr>
+           <p style="text-align: center">Showing {{trackCount}}</p>
+           <tr><th>#</th><th>Track name</th><th>Artist</th><th>Rating</th><th>Time</th><th>File type</th></tr>
             <tr style="cursor: pointer;"
                 data-ng-class="{'selected':selectedTrack.track_id===track.track_id}"
                 data-ng-repeat="track in tracks">

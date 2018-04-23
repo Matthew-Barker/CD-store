@@ -8,18 +8,45 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
-<div id="page">
-    <section data-ng-controller="IndexController">
-        <!-- use double braces to refer to a property defined in IndexController -->
-        <h2>{{subTitle}}</h2>
-        <h3>{{albumtitle}}</h3>
-    </section>
-    <div class="content" style="display:flex;">
-        <article data-ng-controller="AlbumController" data-ng-include="'js/partials/album-list.html'"
-        style="flex: 1 100%;"></article>
-        <article data-ng-view style="flex: 1 100%;" ></article>
+    <div id="page">
+        <section data-ng-controller="IndexController">
+            <nav>
+                <h1>{{title}}</h1>
+                <div class="links">
+                    <a href="../cm0665-assignment/">Home</a>
+                    <a href="#">Test</a>
+                </div>
+                <form id="login">
+                    <legend>Login</legend>
+                    <input placeholder="Username" name="username" id="username">
+                    <input placeholder="Password" name="password" id="password">
+                    <input type="submit" value="Login"/>
+                </form>
+            </nav>
+            <div class="headings">
+                <!-- use double braces to refer to a property defined in IndexController -->
+                <div class="aTitle">
+                    <h2>{{subTitle}}</h2>
+                    <form id="search">
+                        <input type="search" ng-change="" placeholder="Search"/>
+                        <label for="genre">Genre's</label>
+                        <select name="genre">
+                            <option value="All">View all</option>
+                        </select>
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+                <div class="tTitle">
+                    <h3>{{albumtitle}}</h3>
+                </div>
+            </div>
+        </section>
+        <div class="content" style="display:flex;">
+            <article data-ng-controller="AlbumController" data-ng-include="'js/partials/album-list.html'"
+            class="album-partial"></article>
+            <article data-ng-view style="flex: 2 100%;" ></article>
+        </div>
     </div>
-</div>
 
 <!-- load the basic angular libraries, though initially we'll only need the first two -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.js"></script>
