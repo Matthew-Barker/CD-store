@@ -1,0 +1,27 @@
+<section>
+  
+  <caption style="float:left;">Showing {{albums.length}} out of {{albums.length}} results.</caption>
+  <table class="album-list">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Ratings</th>
+        <th>Year</th>
+        <th>Composer</th>
+        <th>Discount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="album in albums" data-ng-click="selectAlbum($event, album)"
+      data-ng-class="{'selected':selectedAlbum.album_id===album.album_id}" class="album">
+        <td><img src="resources/images/music_artwork/{{album.artwork}}"/></td>
+        <td><a href="#/albums/{{album.album_id}}">{{album.name}}</a></td>
+        <td>{{album.album_rating}}</td>
+        <td>{{album.year}}</td>
+        <td>{{album.composer}}</td>
+        <td>{{album.disc_count}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

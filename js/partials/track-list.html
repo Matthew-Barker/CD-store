@@ -1,0 +1,20 @@
+<section>
+    <div data-ng-show="trackCount">
+       <table class="link">
+           <caption>{{trackCount}}</caption>
+           <tr><th>Track name</th><th>Kind</th><th>Time</th><th>Rating</th></tr>
+            <tr style="cursor: pointer;"
+                data-ng-class="{'selected':selectedTrack.track_id===track.track_id}"
+                data-ng-repeat="track in tracks">
+                <td style="display:hidden;">{{track.track_id}}</td>
+                <td>{{track.name}}</td>
+                <td>{{track.kind}}</td>
+                <td>{{track.total_time}}</td>
+                <td>{{track.rating}}</td>
+            </tr>
+        </table>
+    </div>
+    <div style="display:inline-block;" data-ng-hide="trackCount">
+        <p>Sorry no track, bugger</p>
+    </div>
+</section>
