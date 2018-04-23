@@ -21,7 +21,7 @@
                     //templateUrl: 'js/partials/course-list.html',
                     controller: 'AlbumController'
                 }).
-                when('/albums/:albumsid', {
+                when('/albums/:album_id', {
                     templateUrl: 'js/partials/track-list.html',
                     controller: 'AlbumTrackController'
                 }).

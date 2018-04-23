@@ -40,31 +40,28 @@ header("Content-Type: application/json");
 switch ($route) {
     case 'listTracks':
         $id                = $db->quote($id);
-        $sqlAlbumTracks = "SELECT track_id, artist_id, comments, composer, kind,
-                              location, name, play_count, rating, size, total_time
+        $sqlAlbumTracks = "SELECT t.track_id, t.comments,t.artist_id, t.composer, t.kind,
+                              t.location, t.name AS track_name, t.play_count, t.rating, t.size, t.total_time,
+                              art.artist_id, art.name AS artist_name
                               FROM i_track AS t
-                              INNER JOIN i_album_track AS at
-                              ON t.track_id = at.track_id
-                              WHERE album_id = $id";
+                              INNER JOIN i_album_track AS a
+                              ON t.track_id = a.track_id
+                              INNER JOIN i_artist AS art
+                              ON art.artist_id = t.artist_id
+                              WHERE album_id = $id
+                              ORDER BY track_number";
 
         $rs                = new JSONRecordSet();
         $retval            = $rs->getRecordSet($sqlAlbumTracks);
         echo $retval;
         break;
     case 'listAlbums':
-        $sqlAlbums = "SELECT album_id, name, album_rating, artwork, compilation,
-                       composer, disc_count, disc_number, sort_album, year, genre_id
-                       FROM i_album
-                       ORDER BY name";
-
-        $rs         = new JSONRecordSet();
-        $retval     = $rs->getRecordSet($sqlAlbums, 'ResultSet');
-        echo $retval;
-        break;
-    case 'listgenre':
-        $sqlAlbums = "SELECT genre_id, name
-                       FROM i_genre
-                       ORDER BY name";
+        $sqlAlbums = "SELECT a.album_id, a.name AS album_name, a.album_rating, a.artwork, a.compilation,
+                       a.composer, a.disc_count, a.disc_number, a.sort_album, a.year, g.name AS genre_name
+                       FROM i_album AS a
+                       INNER JOIN i_genre AS g 
+                       ON a.genre_id = g.genre_id
+                       ORDER BY album_name";
 
         $rs         = new JSONRecordSet();
         $retval     = $rs->getRecordSet($sqlAlbums, 'ResultSet');

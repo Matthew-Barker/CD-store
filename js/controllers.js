@@ -21,11 +21,11 @@
             function ($scope, appData) {
                 // add a title property which we can refer to in our view (index.html in this example)
                 $scope.title = 'CD store';
-                $scope.subTitle = 'Albums';
+                $scope.subTitle = 'Album listings';
                 $scope.albumtitle = '';
 
                 $scope.$on('systemInfo_album', function (ev, album) {
-                    $scope.albumtitle = album.name;
+                    $scope.albumtitle = album.album_name;
                 })
             }
         ]
@@ -45,6 +45,7 @@
                         function(response){
                             $scope.AlbumCount  = response.rowCount + ' albums';
                             $scope.albums     = response.data;
+                            $scope.image = response.data.artwork;
                         },
                         function(err){
                             $scope.status = 'Unable to load data ' + err;
@@ -57,7 +58,8 @@
 
                 $scope.selectedAlbum = {};
 
-                $scope.selectAlbum = function ($event, album) {
+
+                $scope.selectAlbum = function ($event, album,) {
                     $scope.selectedAlbum = album;
                     $location.path('/albums/' + album.album_id);
                     appData.publishInfo('album', album);
@@ -82,6 +84,7 @@
                         function (response) {
                             $scope.trackCount = response.rowCount + ' tracks';
                             $scope.tracks = response.data;
+
                         },
                         function (err){
                             $scope.status = 'Unable to load data ' + err;
@@ -93,7 +96,7 @@
 
                 $scope.selectTrack = function ($event, track) {
                     $scope.selectedTrack = track;
-                }
+                } 
 
                 // only if there has been a courseid passed in do we bother trying to get the students
                 if ($routeParams && $routeParams.album_id) {
@@ -104,4 +107,42 @@
             }
         ]
     );
+    /*.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
+        
+        // Fetch data
+        $scope.fetchUsers = function(){
+                        
+            var searchText_len = $scope.searchText.trim().length;
+
+            // Check search text length
+            if(searchText_len > 0){
+                $http({
+                    method: 'post',
+                    url: 'index.php',
+                    subject: 'album',
+                    data: {searchText:$scope.searchText}
+                }).then(function successCallback(response) {
+                    $scope.searchResult = response.data;
+                });
+            } else {
+                $scope.searchResult = {};
+            }
+                    
+        }
+
+        // Set value to search box
+        $scope.setValue = function(index,$event){
+            $scope.searchText = $scope.searchResult[index].name;
+            $scope.searchResult = {};
+            $event.stopPropagation();
+        }
+
+        $scope.searchboxClicked = function($event){
+            $event.stopPropagation();
+        }
+
+        $scope.containerClicked = function(){
+            $scope.searchResult = {};
+        }
+    }]);*/
 }());
