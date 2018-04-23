@@ -30,11 +30,12 @@
                 * fulfilled calls the success method
                 */
 
-            this.getAlbums = function () {
+            this.getAlbums = function (genre, search) {
                 var defer = $q.defer(),     //The promise
                         data = {                        // the data to be passed to the url
-                        action: 'list',
-                        subject: 'albums'
+                        action: 'listAlbums',
+                        genre: 'genre',
+                        search: 'search'
                     };
                 /**
                 * make an ajax get call
@@ -66,12 +67,59 @@
             this.getTracks = function (album_id) {
                 var defer = $q.defer(),
                     data = {
-                        action: 'list',
-                        subject: 'tracks',
+                        action: 'listTracks',
                         id: album_id
                     };
 
                 $http.get(urlBase , {params: data, cache: false}).                  // notice the dot to start the chain to success()
+                success(function(response){
+                    defer.resolve({
+                        data: response.ResultSet.Result,         // create data property with value from response
+                        rowCount: response.ResultSet.RowCount // create rowCount property with value from response
+                    });
+                }).                                         // another dot to chain to error()
+                error(function(err){
+                    defer.reject(err);
+                });
+                // the call to getAlbums returns this promise which is fulfilled
+                // by the .get method .success or .failure
+                return defer.promise;
+            };
+
+            this.getNotes = function (album_id) {
+                var defer = $q.defer(),
+                    data = {
+                        action: 'listNotes',
+                        id: album_id
+                    };
+
+                $http.get(urlBase , {params: data, cache: false}).                  // notice the dot to start the chain to success()
+                success(function(response){
+                    defer.resolve({
+                        data: response.ResultSet.Result,         // create data property with value from response
+                        rowCount: response.ResultSet.RowCount // create rowCount property with value from response
+                    });
+                }).                                         // another dot to chain to error()
+                error(function(err){
+                    defer.reject(err);
+                });
+                // the call to getNotes returns this promise which is fulfilled
+                // by the .get method .success or .failure
+                return defer.promise;
+            };
+
+            /**
+             *
+             * @param {string}
+             * @returns {object} promise
+             */
+            this.getGenres = function () {
+                var defer = $q.defer(),
+                    data = {
+                        action: 'listGenres'
+                    };
+
+                $http.get(urlBase , {params: data, cache: true}).    // notice the dot to start the chain to success()
                 success(function(response){
                     defer.resolve({
                         data: response.ResultSet.Result,         // create data property with value from response

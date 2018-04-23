@@ -13,11 +13,11 @@
             <nav>
                 <h1>{{title}}</h1>
                 <div class="links">
-                    <a href="../cm0665-assignment/">Home</a>
-                    <a href="#">Test</a>
+                    <a class="test" href="../cm0665-assignment/">Home</a>
+                    <a href="test.php">Test</a>
                 </div>
                 <form id="login">
-                    <legend>Login</legend>
+                    <legend>Admin</legend>
                     <input placeholder="Username" name="username" id="username">
                     <input placeholder="Password" name="password" id="password">
                     <input type="submit" value="Login"/>
@@ -27,14 +27,14 @@
                 <!-- use double braces to refer to a property defined in IndexController -->
                 <div class="aTitle">
                     <h2>{{subTitle}}</h2>
-                    <form id="search">
-                        <input type="search" ng-change="" placeholder="Search"/>
+                    <div id="search" data-ng-controller="AlbumController">
+                        <input type="search" data-ng-model="searchData" data-ng-change="getAlbums(selectGenre, searchData)" placeholder="Search"/>
                         <label for="genre">Genre's</label>
-                        <select name="genre">
-                            <option value="All">View all</option>
+                        <select data-ng-model="selectedGenre" data-ng-change="getAlbums(selectGenre, searchData)">
+                            <option Selected value="">View all</option>
+                            <option data-ng-repeat="genre in genres" value="{{genre.genre_id}}">{{genre.name}}</option>
                         </select>
-                        <input type="submit" value="Search">
-                    </form>
+                    </div>
                 </div>
                 <div class="tTitle">
                     <h3>{{albumtitle}}</h3>

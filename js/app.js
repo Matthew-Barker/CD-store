@@ -18,7 +18,6 @@
             function($routeProvider) {
                 $routeProvider.
                 when('/albums', {
-                    //templateUrl: 'js/partials/course-list.html',
                     controller: 'AlbumController'
                 }).
                 when('/albums/:album_id', {

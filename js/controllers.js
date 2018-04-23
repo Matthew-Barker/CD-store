@@ -40,12 +40,11 @@
             function ($scope, dataService, appData, $location) {
                 appData.publishInfo('album',{});
 
-                var getAlbum = function () {
-                    dataService.getAlbums().then(  // then() is called when the promise is resolve or rejected
+                $scope.getAlbums = function (selectedGenre, searchData) {
+                    dataService.getAlbums(selectedGenre, searchData).then(  // then() is called when the promise is resolve or rejected
                         function(response){
                             $scope.AlbumCount  = response.rowCount + ' albums';
                             $scope.albums     = response.data;
-                            $scope.image = response.data.artwork;
                         },
                         function(err){
                             $scope.status = 'Unable to load data ' + err;
@@ -53,10 +52,24 @@
                         function(notify){
                             console.log(notify);
                         }
-                    ); // end of getAlbum().then
+                    ); // end of getAlbums().then
                 };
 
                 $scope.selectedAlbum = {};
+
+                var getGenre = function () {
+                    dataService.getGenres().then(  // then() is called when the promise is resolve or rejected
+                        function(response){
+                            $scope.genres     = response.data;
+                        },
+                        function(err){
+                            $scope.status = 'Unable to load data ' + err;
+                        },
+                        function(notify){
+                            console.log(notify);
+                        }
+                    ); // end of getGenre().then
+                };
 
 
                 $scope.selectAlbum = function ($event, album,) {
@@ -65,7 +78,7 @@
                     appData.publishInfo('album', album);
                 }
 
-                getAlbum();  // call the method just defined
+                getGenre();
             }
         ]
     ).
@@ -90,6 +103,19 @@
                             $scope.status = 'Unable to load data ' + err;
                         }
                     );  // end of getTracks().then
+                };
+
+                var getNotes = function (album_id) {
+                    dataService.getNotes(album_id).then(
+                        function (response) {
+                            $scope.noteCount = response.rowCount + ' notes';
+                            $scope.notes = response.data;
+
+                        },
+                        function (err){
+                            $scope.status = 'Unable to load data ' + err;
+                        }
+                    );  // end of getNotes().then
                 };
 
                 $scope.selectedTrack = {};

@@ -1,4 +1,4 @@
-<section>
+<section data-ng-init="getAlbums()">
     <!--<input type="text" ng-model="searchString" placeholder="Search"/>-->
 
     <table class="album-list">
@@ -7,25 +7,24 @@
         <tr>
           <th>Name</th>
           <th></th>
-          <th>Ratings</th>
-          <th>Year</th>
-          <th>Composer</th>
+          <th>Artists</th>
           <th>Genre</th>
+          <th>Year</th>
+          <th>Time</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="album in albums | searchFor:searchString" data-ng-click="selectAlbum($event, album)"
         data-ng-class="{'selected':selectedAlbum.album_id===album.album_id}" class="album">
-          <td style="padding: 0;"><img src="resources/music_artwork/{{album.artwork}}"/></td>
-          <!--
-          <td data-ng-show="image"><img ng-src="resources/music_artwork/{{album.artwork}}"/></td>
-          <td data-ng-hide="image"><img ng-src="resources/music_artwork/no-image.jpg"/></td>
-          -->
+          <td style="padding: 0;">
+            <img data-ng-if="album.artwork !== null" ng-src="resources/music_artwork/{{album.artwork}}"/>
+            <img data-ng-if="album.artwork === null" ng-src="resources/music_artwork/no-image.jpg"/>
+          </td>    
           <td>{{album.album_name}}</td>
-          <td>{{album.album_rating}}</td>
-          <td>{{album.year}}</td>
-          <td>{{album.composer}}</td>
+          <td>{{album.artist_name}}</td>
           <td>{{album.genre_name}}</td>
+          <td>{{album.year}}</td>
+          <td>{{album.total_time}}</td>
         </tr>
       </tbody>
     </table>
