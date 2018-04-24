@@ -1,15 +1,16 @@
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #F7F7F7;
+  background-color: #fff;
   font: 14px "Source Sans Pro",sans-serif;
   color: #363636;
 }
+
  /*---------- Nav styling --------------*/
+
 nav {
   height: 70px;
-  background-color: #000;
+  background-color: #1c2127;
   color: #F7F7F7;
   width: 96%;
   margin: 10px 2%;
@@ -32,8 +33,9 @@ h1 {
   text-align: center;
   padding: 0 10px;
   height: 70px;
-  line-height: 80px;
+  line-height: 70px;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .links a:hover {
@@ -52,7 +54,41 @@ h1 {
 }
 
 #login input {
-  margin-top: 5px;
+  margin-top: 10px;
+  padding: 7px;
+  border: #fff solid 2px;
+  background-color: transparent;
+  font-weight: bold;
+  color: #fff;
+}
+
+#login input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+}
+#login input::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+#login input:-ms-input-placeholder { /* IE 10+ */
+  color: #fff;
+}
+#login input:-moz-placeholder { /* Firefox 18- */
+  color: #fff;
+}
+
+#login input[type=submit]:hover {
+  background-color: #fff;
+  color: #000;
+
+}
+
+#login input[type=submit]:active, {
+  background-color: #fff;
+  color: #000;
+}
+
+#login input[type=text]:focus, {
+  border: #fff solid 3px;
+  box-shadow: 0 0 5px rgb(255, 255, 255);
 }
 
 /*---------- Nav styling end --------------*/
@@ -68,35 +104,91 @@ h1 {
   text-align: center;
   flex: 1 100%;
   margin: 10px 0;
-  background-color: #EDEDEE;
+  background-color: #a3a5a7;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   width: 100%;
-  border-right: #CCC solid 1px;
+  border-right: #1c2127 solid 1px;
 }
 
 h2 {
+  color: #1c2127;
   float: left;
-  margin-left: 20px;
+  margin: 25px 20px;
 }
 
 #search {
   margin: 20px 10px 20px 5px;
 }
 
+#search input {
+  padding: 7px;
+  border: #363636 solid 2px;
+  background-color: white;
+  font-weight: bold;
+  color: #363636;
+  width: 300px;
+  margin-right: 10px;
+  float: left;
+}
+
+#search input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #363636;
+}
+#search input::-moz-placeholder { /* Firefox 19+ */
+  color: #363636;
+}
+#search input:-ms-input-placeholder { /* IE 10+ */
+  color: #363636;
+}
+#search input:-moz-placeholder { /* Firefox 18- */
+  color: #363636;
+}
+
+#search input[type=submit]:hover {
+  background-color: #363636;
+  color: #000;
+
+}
+
+#search input[type=submit]:active, {
+  background-color: #363636;
+  color: #000;
+}
+
+#search input[type=text]:focus, {
+  border: #363636 solid 3px;
+  box-shadow: 0 0 5px rgb(255, 255, 255);
+}
+
+#search label {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+#search select {
+  padding: 6px;
+  border: #363636 solid 2px;
+  background-color: white;
+  font-weight: bold;
+  color: #363636;
+  float: left;
+}
+
 .tTitle {
   text-align: center;
   flex: 1 100%;
   margin: 10px 0;
-  background-color: #EDEDEE;
+  background-color: #a3a5a7;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   width: 100%;
 }
 
 h3 {
-  float: left;
-  margin: 20px;
+  margin-top: 30px;
+  text-align: center;
+  color: #1c2127;
 }
 
 /*---------- Heading styling end --------------*/
@@ -107,13 +199,21 @@ h3 {
   margin: 0 5%;
 }
 
-::-webkit-scrollbar {
-  width: 0px;  /* remove scrollbar space */
-  background: transparent;  /* optional: just make scrollbar invisible */
+.album-partial::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.album-partial::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+}
+
+.album-partial::-webkit-scrollbar-button {
+  background: transparent
 }
 
 .album-partial{
-  height: 500px;
+  height: 730px;
   overflow: scroll;
   overflow-x: hidden;
   flex: 2 100%;
@@ -134,15 +234,20 @@ h3 {
   padding: 10px 5px; 
 }
 
-.album {
+.album, .track {
   cursor: pointer;
   width: auto;
   background-color: #fff;
   border: 1px #CCC solid;
+  width: 90%;
 }
 
-.album:nth-child(even) {
+.album:nth-child(even), .track:nth-child(even) {
     background-color: #EDEDEE;
+}
+
+.track:nth-child(even) {
+  background-color: #EDEDEE;
 }
 
 table {
@@ -164,6 +269,13 @@ td {
 .album a {
   text-decoration: none;
   color: #363636;
+  font-weight: bold;
+}
+
+.selected, .selected a {
+  color: white !important;
+  font-style: italic;
+  background-color: #1c2127 !important;
   font-weight: bold;
 }
 

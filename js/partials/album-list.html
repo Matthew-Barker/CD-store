@@ -20,12 +20,20 @@
             <img data-ng-if="album.artwork === null" ng-src="resources/no-image.jpg"/>
           -->
           </td>    
-          <td>{{album.album_name}}</td>
-          <td>{{album.artist_name}}</td>
-          <td>{{album.genre_name}}</td>
-          <td data-ng-if="album.artwork !== null">{{album.year}}</td>
-          <td data-ng-if="album.artwork === null">Not available</td>
-          <td>{{album.total_time | date: 'mm:ss'}}</td>
+          <td data-ng-if="album.album_name !== null">{{album.album_name}}</td>
+          <td data-ng-if="album.album_name === null">Not found</td>
+
+          <td data-ng-if="album.artist_name !== null">{{album.artist_name}}</td>
+          <td data-ng-if="album.artist_name === null">Not found</td>
+
+          <td data-ng-if="album.genre_name !== null">{{album.genre_name}}</td>
+          <td data-ng-if="album.genre_name === null">Not found</td>
+
+          <td data-ng-if="album.year !== null">{{album.year}}</td>
+          <td data-ng-if="album.year === null">----</td>
+
+          <td data-ng-if="album.total_time !== null">{{album.total_time | date: 'mm:ss'}}</td>
+          <td data-ng-if="album.total_time === null">----</td>
         </tr>
       </tbody>
     </table>

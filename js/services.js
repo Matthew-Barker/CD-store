@@ -198,7 +198,7 @@
             };
 
         }]
-     )
+    )
     //.
 
     // filter('searchFor', function(){

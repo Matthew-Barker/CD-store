@@ -14,29 +14,40 @@
             <tbody>
                 <tr style="cursor: pointer;"
                     data-ng-class="{'selected':selectedTrack.track_id===track.track_id}"
-                    data-ng-repeat="track in tracks">
+                    data-ng-repeat="track in tracks" class="track">
                     <td style="display:none;">{{track.track_id}}</td>
                     <td>{{track.track_number}}</td>
                     <td>{{track.track_name}}</td>
                     <td>{{track.artist_name}}</td>
-                    <td>{{track.total_time | date: "h:mm:ss"}}</td>
+                    <td>{{track.total_time | date: 'mm:ss'}}</td>
                     <td>{{track.size | number: 0}} KB</td>
                 </tr>
             </tbody>
         </table>
-    <div style="display:inline-block;" data-ng-hide="trackCount">
-        <p>Sorry no track for this album</p>
-    </div>
-    <div data-ng-show="noteCount">
-        <div class="notes">
-            <div data-ng-repeat="note in notes">
-                <h4>Note</h4>
-                <p>{{note.note}}</p>
-                <label>{{note.lastupdate}}</label>
-            </div>
+        <div style="display:inline-block;" data-ng-hide="trackCount">
+            <p>Sorry no track for this album</p>
         </div>
-    </div>
-    <div data-ng-hide="trackCount">
-        <p>No notes available for this album</p>
+        <div data-ng-show="noteCount" class="notes">
+            <h4>Notes</h4>
+            <table >
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Note</th>
+                        <th>Time stamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="note in notes">
+                        <td>{{note.user_id}}</td>
+                        <td>{{note.note}}</td>
+                        <td>{{note.lastupdate | date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div data-ng-hide="noteCount">
+            <p>No notes available for this album</p>
+        </div>
     </div>
 </section>
