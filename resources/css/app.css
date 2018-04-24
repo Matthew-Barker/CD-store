@@ -36,12 +36,12 @@ h1 {
   font-size: 16px;
 }
 
-.link a:hover, .test:active {
+.links a:hover {
   background-color: #fff;
   color: #000;
 }
 
-.link a:active, .test:active {
+.links a:active, {
   background-color: #fff;
   color: #000;
 }

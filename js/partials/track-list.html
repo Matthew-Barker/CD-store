@@ -7,7 +7,6 @@
                     <th>#</th>
                     <th>Track name</th>
                     <th>Artist</th>
-                    <th>Rating</th>
                     <th>Time</th>
                     <th>Size</th>
                 </tr>
@@ -20,9 +19,8 @@
                     <td>{{track.track_number}}</td>
                     <td>{{track.track_name}}</td>
                     <td>{{track.artist_name}}</td>
-                    <td>{{track.rating}}</td>
-                    <td>{{track.total_time | date: "hh.mm.ss"}}</td>
-                    <td>{{track.size}}</td>
+                    <td>{{track.total_time | date: "h:mm:ss"}}</td>
+                    <td>{{track.size | number: 0}} KB</td>
                 </tr>
             </tbody>
         </table>

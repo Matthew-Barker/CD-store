@@ -18,9 +18,9 @@
                 </div>
                 <form id="login">
                     <legend>Admin</legend>
-                    <input placeholder="Username" name="username" id="username">
-                    <input placeholder="Password" name="password" id="password">
-                    <input type="submit" value="Login"/>
+                    <input type="text" data-ng-modal="username" placeholder="Username" name="username" id="username">
+                    <input type="password" data-ng-modal="username" placeholder="Password" name="password" id="password">
+                    <input type="submit" data-ng-click="loginAdmin(username, password)" value="Login"/>
                 </form>
             </nav>
             <div class="headings">
@@ -30,7 +30,7 @@
                     <div id="search" data-ng-controller="AlbumController">
                         <input type="search" data-ng-model="searchData" data-ng-change="getAlbums(selectGenre, searchData)" placeholder="Search"/>
                         <label for="genre">Genre's</label>
-                        <select data-ng-model="selectedGenre" data-ng-change="getAlbums(selectGenre, searchData)">
+                        <select data-ng-model="selectedGenre" data-ng-change="getAlbums(selectedGenre, searchData)">
                             <option Selected value="">View all</option>
                             <option data-ng-repeat="genre in genres" value="{{genre.genre_id}}">{{genre.name}}</option>
                         </select>

@@ -2,12 +2,11 @@
     "use strict";
 
     /**
-     * Extend the module 'CourseApp' instantiated in app.js  To add a controller called
-     * IndexController (on line 17)
+     * Extend the module 'CDApp' instantiated in app.js  To add a controller called
+     * IndexController
      *
      * The controller is given two parameters, a name as a string and an array.
-     * The array lists any injected objects to add and then a function which will be the
-     * controller object and can contain properties and methods.
+     *
      * $scope is a built in object which refers to the application model and acts
      * as a sort of link between the controller, its data and the application's views.
      * '
@@ -27,6 +26,38 @@
                 $scope.$on('systemInfo_album', function (ev, album) {
                     $scope.albumtitle = album.album_name;
                 })
+
+                // ------------ Login not filly implemented----------//
+                $scope.loginAdmin = function (username, password) {
+                    dataService.loginAdmin(username, password).then (
+                        function(response){
+                            //login successful
+                            //create session
+                        },
+                        function(err){
+                            $scope.status = 'Unable to load data ' + err;
+                        },
+                        function(notify){
+                            console.log(notify);
+                        }
+                    );
+                }
+
+                // ------------ Logout not filly implemented----------//
+                $scope.logoutAdmin = function (username, password) {
+                    dataService.logoutAdmin(username, password).then (
+                        function(response){
+                            //logout successful
+                            //delete session
+                        },
+                        function(err){
+                            $scope.status = 'Unable to load data ' + err;
+                        },
+                        function(notify){
+                            console.log(notify);
+                        }
+                    );
+                }
             }
         ]
     ).
@@ -41,6 +72,7 @@
                 appData.publishInfo('album',{});
 
                 $scope.getAlbums = function (selectedGenre, searchData) {
+                    console.log(selectedGenre, 'controller genre', searchData, 'controller search');
                     dataService.getAlbums(selectedGenre, searchData).then(  // then() is called when the promise is resolve or rejected
                         function(response){
                             $scope.AlbumCount  = response.rowCount + ' albums';
