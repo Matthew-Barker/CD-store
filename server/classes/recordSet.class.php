@@ -1,10 +1,5 @@
 <?php
 
-/**
- * abstract super that creates a database connection and returns a record set
- * @author Rob Davis
- *
- */
 abstract class R_RecordSet {
     protected $db;
     protected $stmt;
@@ -31,10 +26,6 @@ abstract class R_RecordSet {
     }
 }
 
-/**
- * specialisation class that returns a record set as an json string
- * @author Rob Davis
- */
 class JSONRecordSet extends R_RecordSet {
     /**
      * function to return a record set as a json encoded string

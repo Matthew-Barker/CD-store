@@ -9,7 +9,9 @@ try {
 
     $db = pdoDB::getConnection();
 
-    $page->addToBody("<h1>Testing page</h1>
+    $page->addToBody("  
+    
+    <h1>Testing page</h1>
 
     <br/>
     <br/>

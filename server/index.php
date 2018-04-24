@@ -9,6 +9,7 @@
 require_once('./classes/pdoDB.class.php');
 require_once('./classes/recordSet.class.php');
 
+// pulling data from the request stream
 
 $action     = isset($_REQUEST['action'])    ? $_REQUEST['action']   : null;
 $id         = isset($_REQUEST['id'])        ? $_REQUEST['id']       : null;
@@ -41,7 +42,10 @@ header("Content-Type: application/json");
 
 // take the appropriate action based on the action in the request
 switch ($action) {
+    //query into the database that lists all albums or list albums matching search terms
     case 'listAlbums':
+
+    //check to see search terms have been set and add SQL to WHERE clause
 
     if (!empty($genre) && !empty($search)) {
         $clause = "a.name LIKE '%$search%'
@@ -76,6 +80,7 @@ switch ($action) {
         $retval     = $rs->getRecordSet($sqlAlbums, 'ResultSet');
         echo $retval;
         break;
+    //List to show all tracks related to the album id passed in the request stream
     case 'listTracks':
         $id                = $db->quote($id);
         $sqlAlbumTracks = "SELECT t.track_id, t.comments,t.artist_id, t.composer, t.kind,
@@ -93,6 +98,7 @@ switch ($action) {
         $retval            = $rs->getRecordSet($sqlAlbumTracks);
         echo $retval;
         break;
+    //a query to get all genres for the select genre search filter
     case 'listGenres':
         $sqlGenres = "SELECT g.genre_id, g.name
                         FROM i_genre AS g
@@ -102,6 +108,7 @@ switch ($action) {
         $retval     = $rs->getRecordSet($sqlGenres, 'ResultSet');
         echo $retval;
         break;
+    //query to list all notes linked to the album id from the request stream
     case 'listNotes':
         $id                = $db->quote($id);
         $sqlNotes = "SELECT *
@@ -112,6 +119,7 @@ switch ($action) {
         $retval            = $rs->getRecordSet($sqlNotes);
         echo $retval;
         break;
+    //query for user login --- not complete
     case 'loginAdmin':
 
         
@@ -123,6 +131,7 @@ switch ($action) {
         $retval            = $rs->getRecordSet($sqlNotes);
         echo $retval;
         break;
+    //query for user logout --- not complete
     case 'logoutAdmin':
         $sqlNotes = "SELECT *
                         FROM i_notes

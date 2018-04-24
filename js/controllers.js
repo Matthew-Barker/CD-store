@@ -156,10 +156,47 @@
                     $scope.selectedTrack = track;
                 } 
 
-                // only if there has been a courseid passed in do we bother trying to get the students
+                // only if there has been a album id passed in do we bother trying to get the tracks
                 if ($routeParams && $routeParams.album_id) {
                     console.log($routeParams.album_id);
                     getTracks($routeParams.album_id);
+                }
+
+            }
+        ]
+    ).
+    controller('NoteController',
+        [
+            '$scope',
+            'dataService',
+            '$routeParams',
+
+            function ($scope, dataService, $routeParams){
+                $scope.notes = [ ];
+                $scope.NoteCount = 0;
+
+                var getNotes = function (album_id) {
+                    dataService.getNotes(album_id).then(
+                        function (response) {
+                            $scope.noteCount = response.rowCount + ' notes';
+                            $scope.notes = response.data;
+
+                        },
+                        function (err){
+                            $scope.status = 'Unable to load data ' + err;
+                        }
+                    );  // end of getNotes().then
+                };
+
+
+                $scope.selectNote = function ($event, note) {
+                    $scope.selectedNote = note;
+                } 
+
+                // only if there has been a album id passed in do we bother trying to get the notes
+                if ($routeParams && $routeParams.album_id) {
+                    console.log($routeParams.album_id);
+                    getNotes($routeParams.album_id);
                 }
 
             }

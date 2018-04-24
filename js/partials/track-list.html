@@ -27,9 +27,9 @@
         <div style="display:inline-block;" data-ng-hide="trackCount">
             <p>Sorry no track for this album</p>
         </div>
-        <div data-ng-show="noteCount" class="notes">
+        <div data-ng-show="NoteCount !== null" data-ng-controller="NoteController" class="notes">
             <h4>Notes</h4>
-            <table >
+            <table>
                 <thead>
                     <tr>
                         <th>User</th>
@@ -45,9 +45,9 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div data-ng-hide="noteCount">
-            <p>No notes available for this album</p>
+            <div data-ng-show="NoteCount === null">
+                <p>No notes available for this album</p>
+            </div>
         </div>
     </div>
 </section>
