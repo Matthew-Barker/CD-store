@@ -22,22 +22,6 @@
                     <input type="submit" data-ng-click="loginAdmin(username, password)" value="Login"/>
                 </form>
             </nav>
-            <div class="headings">
-                <!-- use double braces to refer to a property defined in IndexController -->
-                <div class="aTitle">
-                    <h2>{{subTitle}}</h2>
-                    <div id="search" data-ng-controller="AlbumController">
-                        <input type="search" data-ng-model="searchData" data-ng-change="getAlbums(selectGenre, searchData)" placeholder="Search"/>
-                        <select data-ng-model="selectedGenre" data-ng-change="getAlbums(selectedGenre, searchData)">
-                            <option Selected value="">View all genres</option>
-                            <option data-ng-repeat="genre in genres" value="{{genre.genre_id}}">{{genre.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="tTitle">
-                    <h3>{{albumtitle}}</h3>
-                </div>
-            </div>
         </section>
         <div class="content" style="display:flex;">
             <article data-ng-controller="AlbumController" data-ng-include="'js/partials/album-list.html'"

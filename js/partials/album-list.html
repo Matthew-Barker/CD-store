@@ -1,40 +1,55 @@
 <section data-ng-init="getAlbums()">
-    <!--<input type="text" ng-model="searchString" placeholder="Search"/>-->
-    <table class="album-list">
-      <thead>
-        <p style="text-align: center;">Showing {{albums.length}} out of {{albums.length}} results.</p>
-        <tr>
-          <th>Name</th>
-          <th></th>
-          <th>Artists</th>
-          <th>Genre</th>
-          <th>Year</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="album in albums" data-ng-click="selectAlbum($event, album)"
-        data-ng-class="{'selected':selectedAlbum.album_id===album.album_id}" class="album">
-          <td style="padding: 0;">
-          <!--  <img data-ng-if="album.artwork !== null" ng-src="resources/music_artwork/{{album.artwork}}"/>
-            <img data-ng-if="album.artwork === null" ng-src="resources/no-image.jpg"/>
-          -->
-          </td>    
-          <td data-ng-if="album.album_name !== null">{{album.album_name}}</td>
-          <td data-ng-if="album.album_name === null">Not found</td>
+  <!--<input type="text" ng-model="searchString" placeholder="Search"/>-->
+  <div class="headings">
+  <!-- use double braces to refer to a property defined in IndexController -->
+    <div class="aTitle">
+      <h2>{{subTitle}}</h2>
+      <div id="search">
+          <input type="search" data-ng-model="searchData" data-ng-change="getAlbums(selectGenre, searchData)" placeholder="Search"/>
+          <select data-ng-model="selectedGenre" data-ng-change="getAlbums(selectedGenre, searchData)">
+              <option Selected value="">View all genres</option>
+              <option data-ng-repeat="genre in genres" value="{{genre.genre_id}}">{{genre.name}}</option>
+          </select>
+      </div>
+    </div>
+    <div class="tTitle">
+      <h3>{{albumtitle}}</h3>
+    </div>
+  </div>
+  <table class="album-list">
+    <thead>
+      <p style="text-align: center;">Showing {{albums.length}} out of {{albums.length}} results.</p>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th>Artists</th>
+        <th>Genre</th>
+        <th>Year</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="album in albums" data-ng-click="selectAlbum($event, album)"
+      data-ng-class="{'selected':selectedAlbum.album_id===album.album_id}" class="album">
+        <td style="padding: 0;">
+          <img data-ng-if="album.artwork !== null" ng-src="resources/music_artwork/{{album.artwork}}"/>
+          <img data-ng-if="album.artwork === null" ng-src="resources/no-image.jpg"/>
+        </td>    
+        <td data-ng-if="album.album_name !== null">{{album.album_name}}</td>
+        <td data-ng-if="album.album_name === null">Not found</td>
 
-          <td data-ng-if="album.artist_name !== null">{{album.artist_name}}</td>
-          <td data-ng-if="album.artist_name === null">Not found</td>
+        <td data-ng-if="album.artist_name !== null">{{album.artist_name}}</td>
+        <td data-ng-if="album.artist_name === null">Not found</td>
 
-          <td data-ng-if="album.genre_name !== null">{{album.genre_name}}</td>
-          <td data-ng-if="album.genre_name === null">Not found</td>
+        <td data-ng-if="album.genre_name !== null">{{album.genre_name}}</td>
+        <td data-ng-if="album.genre_name === null">Not found</td>
 
-          <td data-ng-if="album.year !== null">{{album.year}}</td>
-          <td data-ng-if="album.year === null">----</td>
+        <td data-ng-if="album.year !== null">{{album.year}}</td>
+        <td data-ng-if="album.year === null">----</td>
 
-          <td data-ng-if="album.total_time !== null">{{album.total_time | date: 'mm:ss'}}</td>
-          <td data-ng-if="album.total_time === null">----</td>
-        </tr>
-      </tbody>
-    </table>
+        <td data-ng-if="album.total_time !== null">{{album.total_time | date: 'mm:ss'}}</td>
+        <td data-ng-if="album.total_time === null">----</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
