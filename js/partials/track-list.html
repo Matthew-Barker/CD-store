@@ -1,4 +1,4 @@
-<section>
+<section class="track-list">
     <div data-ng-show="trackCount">
         <table class="track">
             <thead>
@@ -28,18 +28,15 @@
             <p>Sorry no track for this album</p>
         </div>
         <div data-ng-show="NoteCount !== null" data-ng-controller="NoteController" class="notes">
-            <h4>Notes</h4>
-            <table>
+            <table class="note">
                 <thead>
                     <tr>
-                        <th>User</th>
-                        <th>Note</th>
+                        <th>Notes</th>
                         <th>Time stamp</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="note in notes">
-                        <td>{{note.user_id}}</td>
                         <td>{{note.note}}</td>
                         <td>{{note.lastupdate | date}}</td>
                     </tr>

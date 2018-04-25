@@ -122,14 +122,28 @@ switch ($action) {
     //query for user login --- not complete
     case 'loginAdmin':
 
-        
-        $sqlNotes = "SELECT *
-                        FROM i_notes
-                        WHERE album_id = $id";
+        $sqlAdmin = "SELECT *
+        FROM i_user AS u
+        WHERE u.user_id = $username
+        AND u.password = $password";
 
-        $rs                = new JSONRecordSet();
-        $retval            = $rs->getRecordSet($sqlNotes);
-        echo $retval;
+        //if username && password not empty
+        if (!empty($username) && !empty($password)) {
+        //validate input data and decrypt password
+            $username = trim($username);
+            $password = trim($password);
+            $username = stripslashes($username);
+            //password decrypt
+            
+        //query database with data
+            $rs                = new JSONRecordSet();
+            $retval            = $rs->getRecordSet($sqlAdmin);
+            echo $retval;
+        //if data matches database, create session
+
+        }
+
+        
         break;
     //query for user logout --- not complete
     case 'logoutAdmin':

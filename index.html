@@ -22,6 +22,8 @@
                     <input type="submit" data-ng-click="loginAdmin(username, password)" value="Login"/>
                 </form>
             </nav>
+            <h2>{{subTitle}}</h2>
+            <h3>{{albumtitle}}</h3>
         </section>
         <div class="content" style="display:flex;">
             <article data-ng-controller="AlbumController" data-ng-include="'js/partials/album-list.html'"

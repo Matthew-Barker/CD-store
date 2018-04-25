@@ -105,20 +105,19 @@ h1 {
   flex: 1 100%;
   margin: 10px 0;
   background-color: #a3a5a7;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 10px;;
   width: 100%;
-  border-right: #1c2127 solid 1px;
 }
 
 h2 {
   color: #1c2127;
-  float: left;
-  margin: 25px 20px;
+ text-align: center;
 }
 
 #search {
-  margin: 20px 10px 20px 5px;
+  margin: 20px;
+  float: left;
+  width: 100%;
 }
 
 #search input {
@@ -128,7 +127,7 @@ h2 {
   font-weight: bold;
   color: #363636;
   width: 300px;
-  margin-right: 10px;
+  margin: 5px 40% 5px 5px;
   float: left;
 }
 
@@ -173,6 +172,7 @@ h2 {
   font-weight: bold;
   color: #363636;
   float: left;
+  margin: 5px;
 }
 
 .tTitle {
@@ -199,24 +199,24 @@ h3 {
   margin: 0 5%;
 }
 
-.album-partial::-webkit-scrollbar-track {
+.a-listing::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-.album-partial::-webkit-scrollbar-thumb {
+.a-listing::-webkit-scrollbar-thumb {
 background-color: darkgrey;
 outline: 1px solid slategrey;
 }
 
-.album-partial::-webkit-scrollbar-button {
+.a-listing::-webkit-scrollbar-button {
   background: transparent
 }
 
-.album-partial{
+.a-listing {
   height: 730px;
   overflow: scroll;
   overflow-x: hidden;
-  flex: 2 100%;
+  flex: 1 100%;
 }
 
 .album-list, track {
@@ -234,7 +234,7 @@ outline: 1px solid slategrey;
   padding: 10px 5px; 
 }
 
-.album, .track {
+.album, .track, .note {
   cursor: pointer;
   width: auto;
   background-color: #fff;
@@ -242,12 +242,8 @@ outline: 1px solid slategrey;
   width: 90%;
 }
 
-.album:nth-child(even), .track:nth-child(even) {
+.album:nth-child(even), .track:nth-child(even), .note:nth-child(even) {
     background-color: #EDEDEE;
-}
-
-.track:nth-child(even) {
-  background-color: #EDEDEE;
 }
 
 table {
@@ -279,13 +275,17 @@ td {
   font-weight: bold;
 }
 
-.track thead {
+.track-list {
+  margin-top: 159px;
+}
+
+.track thead, .note thead {
   background-color: #363636;
   color: #fff;
   padding: 10px 0 10px 10px; 
   text-align: left;
 }
 
-.track thead tr th {
+.track thead tr th, .note thead tr th {
   padding: 10px 5px; 
 }
